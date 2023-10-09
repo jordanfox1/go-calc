@@ -114,3 +114,87 @@ func TestCalculateInt(t *testing.T) {
 		})
 	}
 }
+
+func TestDetermineNumTypes(t *testing.T) {
+	type args struct {
+		input string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "Test Multiply",
+			args: args{"1 * 1"},
+			want: "int",
+		},
+		{
+			name: "Test Multiply",
+			args: args{"1.0 * 1.0"},
+			want: "float",
+		},
+		{
+			name: "Test Multiply",
+			args: args{"3090.1 / 1"},
+			want: "float",
+		},
+		{
+			name: "Test Multiply",
+			args: args{"1 - 1.0989"},
+			want: "float",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := DetermineNumTypes(tt.args.input); got != tt.want {
+				t.Errorf("DetermineIntOrFloat() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestCalculateFloat(t *testing.T) {
+	type args struct {
+		input     string
+		operation string
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{
+			name: "Test Add",
+			args: args{"0.5 + 0.5", "add"},
+			want: 1.0,
+		},
+		{
+			name: "Test Add",
+			args: args{"12.913828 + 0.7871", "add"},
+			want: 13.700928,
+		},
+		{
+			name: "Test Add",
+			args: args{"1.283203 + 0.1212", "add"},
+			want: 1.404403,
+		},
+		{
+			name: "Test Add",
+			args: args{"0.404403 + 0.002", "add"},
+			want: 0.406403,
+		},
+		{
+			name: "Test Subtract",
+			args: args{"0.5 - 0.1", "subtract"},
+			want: 0.4,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := CalculateFloat(tt.args.input, tt.args.operation); got != tt.want {
+				t.Errorf("CalculateFloat() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
