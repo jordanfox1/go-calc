@@ -60,7 +60,26 @@ func CalculateFloat(input string, operation string) float64 {
 		return truncatedRes
 	}
 
+	if operation == "subtract" {
+		result := subFl(input)
+		truncatedRes := truncateFloatResult(result)
+		return truncatedRes
+	}
+
+	if operation == "divide" {
+		result := divideFl(input)
+		truncatedRes := truncateFloatResult(result)
+		return truncatedRes
+	}
+
 	return 2
+}
+
+func divideFl(inp string) float64 {
+	num1, num2 := convertInputStrToFloats(inp, "/")
+	result := num1 / num2
+
+	return result
 }
 
 func multiply(inp string) int {
@@ -72,6 +91,13 @@ func multiply(inp string) int {
 
 func subtract(input string) int {
 	num1, num2 := convertInputStrToNums(input, "-")
+	result := num1 - num2
+
+	return result
+}
+
+func subFl(input string) float64 {
+	num1, num2 := convertInputStrToFloats(input, "-")
 	result := num1 - num2
 
 	return result

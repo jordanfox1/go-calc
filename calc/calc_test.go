@@ -125,22 +125,22 @@ func TestDetermineNumTypes(t *testing.T) {
 		want string
 	}{
 		{
-			name: "Test Multiply",
+			name: "Test int",
 			args: args{"1 * 1"},
 			want: "int",
 		},
 		{
-			name: "Test Multiply",
+			name: "Test float",
 			args: args{"1.0 * 1.0"},
 			want: "float",
 		},
 		{
-			name: "Test Multiply",
+			name: "Test float 2",
 			args: args{"3090.1 / 1"},
 			want: "float",
 		},
 		{
-			name: "Test Multiply",
+			name: "Test float 3",
 			args: args{"1 - 1.0989"},
 			want: "float",
 		},
@@ -188,6 +188,36 @@ func TestCalculateFloat(t *testing.T) {
 			name: "Test Subtract",
 			args: args{"0.5 - 0.1", "subtract"},
 			want: 0.4,
+		},
+		{
+			name: "Test Subtract",
+			args: args{"1.232321 - 0.01", "subtract"},
+			want: 1.222321,
+		},
+		{
+			name: "Test Subtract",
+			args: args{"1.222321 - 3.101", "subtract"},
+			want: -1.878679,
+		},
+		{
+			name: "Test Divide",
+			args: args{"1.222321 / 3.101", "divide"},
+			want: 0.3941699451789745,
+		},
+		{
+			name: "Test Divide",
+			args: args{"4000 / 0.333", "divide"},
+			want: 12012.012012012012,
+		},
+		{
+			name: "Test Divide",
+			args: args{"5 / 4", "divide"},
+			want: 1.25,
+		},
+		{
+			name: "Test Divide",
+			args: args{"5 / -4", "divide"},
+			want: -1.25,
 		},
 	}
 	for _, tt := range tests {
