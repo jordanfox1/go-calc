@@ -1,3 +1,7 @@
 package main
 
-func main() {}
+import "go-calc/cli"
+
+func main() {
+	cli.PromptForInput()
+}

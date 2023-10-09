@@ -72,7 +72,8 @@ func CalculateFloat(input string, operation string) float64 {
 		return truncatedRes
 	}
 
-	return 2
+	log.Fatalf("Invalid input %v, and operation %v", input, operation)
+	return 0
 }
 
 func divideFl(inp string) float64 {
